@@ -7,7 +7,9 @@ module.exports = {
 };
 
 function get() {
-	return db("tasks");
+	return db("tasks as t")
+		.join("projects as p", "p.project_id", "t.project_id")
+		.select("t.*", "p.project_name", "p.project_description");
 }
 
 function add(tasks) {
