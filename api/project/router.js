@@ -5,11 +5,11 @@ const router = express.Router();
 
 router.get("/", (req, res, next) => {
 	try {
-		projectLogic.get().then((project) => {
-			project.forEach((project) => {
-				project.project_completed = !!project.project_completed;
+		projectLogic.get().then((projects) => {
+			projects.forEach((proj) => {
+				proj.project_completed = !!proj.project_completed;
 			});
-			res.json(project);
+			res.json(projects);
 		});
 	} catch (err) {
 		next(err);
