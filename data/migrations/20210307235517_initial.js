@@ -3,7 +3,7 @@ exports.up = async function (knex) {
 		table.increments("project_id");
 		table.text("project_name").notNull();
 		table.text("project_description");
-		table.boolean("project_completed").notNull().defaultTo(0);
+		table.boolean("project_completed").notNull().defaultTo(false);
 	});
 
 	await knex.schema.createTable("resources", (table) => {
@@ -16,7 +16,7 @@ exports.up = async function (knex) {
 		table.increments("task_id");
 		table.text("task_description").notNull();
 		table.text("task_notes");
-		table.boolean("task_completed").notNull().defaultTo(0);
+		table.boolean("task_completed").notNull().defaultTo(false);
 		table
 			.integer("project_id")
 			.notNull()
@@ -29,12 +29,17 @@ exports.up = async function (knex) {
 			.integer("project_id")
 			.notNull()
 			.references("project_id")
-			.inTable("projects");
+			.inTable("projects")
+			//No deletes for you. :)
+			.onDelete("RESTRICT")
+			.onUpdate("CASCADE");
 		table
 			.integer("resources_id")
 			.notNull()
 			.references("resource_id")
-			.inTable("resources");
+			.inTable("resources")
+			.onDelete("RESTRICT")
+			.onUpdate("CASCADE");
 		table.primary(["project_id", "resources_id"]);
 	});
 };

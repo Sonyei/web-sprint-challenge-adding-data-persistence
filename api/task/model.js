@@ -16,6 +16,6 @@ function add(tasks) {
 	return db("tasks")
 		.insert(tasks)
 		.then(([id]) => {
-			return db("tasks").where("tasks_id", id).first();
+			return db("tasks").where("task_id", id).first();
 		});
 }
