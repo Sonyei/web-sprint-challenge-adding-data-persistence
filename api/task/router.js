@@ -19,7 +19,11 @@ router.get("/", (req, res, next) => {
 router.post("/", async (req, res, next) => {
 	try {
 		const tasks = req.body;
-		const data = await tasksLogic.add(tasks);
+		const data = await tasksLogic.add(tasks).then((tasks) => {
+			tasks.forEach((task) => {
+				task.task_completed = !!task.task_completed;
+			});
+		});
 		res.status(200).json(data);
 	} catch (err) {
 		next(err);
