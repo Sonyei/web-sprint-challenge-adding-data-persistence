@@ -6,6 +6,14 @@ module.exports = {
 	add,
 };
 
-function get() {}
+function get() {
+	return db("tasks");
+}
 
-function add() {}
+function add(tasks) {
+	return db("tasks")
+		.insert(tasks)
+		.then(([id]) => {
+			return db("tasks").where("task_id", id).first();
+		});
+}
