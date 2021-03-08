@@ -2,10 +2,10 @@
 const db = require("../../data/dbConfig");
 
 module.exports = {
-	find,
+	get,
 	add,
 };
 
-function find() {}
+function get() {}
 
 function add() {}

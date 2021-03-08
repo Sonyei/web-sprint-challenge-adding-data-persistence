@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", (req, res, next) => {
 	try {
-		resourceLogic.find().then((resources) => {
+		resourceLogic.get().then((resources) => {
 			res.json(resources);
 		});
 	} catch (err) {
