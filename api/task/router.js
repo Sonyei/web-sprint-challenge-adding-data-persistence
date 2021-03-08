@@ -1,12 +1,14 @@
 // build your `/api/tasks` router here
 const express = require("express");
-const dbConfig = require("../../data/dbConfig");
 const tasksLogic = require("./model");
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
 	try {
 		tasksLogic.get().then((tasks) => {
+			tasks.forEach((task) => {
+				task.task_completed = !!task.task_completed;
+			});
 			res.json(tasks);
 		});
 	} catch (err) {

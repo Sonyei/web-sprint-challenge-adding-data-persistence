@@ -6,6 +6,9 @@ const router = express.Router();
 router.get("/", (req, res, next) => {
 	try {
 		projectLogic.get().then((project) => {
+			project.forEach((project) => {
+				project.task_completed = !!project.task_completed;
+			});
 			res.json(project);
 		});
 	} catch (err) {

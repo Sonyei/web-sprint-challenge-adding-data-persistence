@@ -7,6 +7,9 @@ const router = express.Router();
 router.get("/", (req, res, next) => {
 	try {
 		resourceLogic.get().then((resources) => {
+			resources.forEach((resource) => {
+				resource.task_completed = !!resource.task_completed;
+			});
 			res.json(resources);
 		});
 	} catch (err) {
