@@ -21,8 +21,8 @@ router.post("/", async (req, res, next) => {
 		const tasks = req.body;
 		const data = await tasksLogic.add(tasks).then((task) => {
 			task.task_completed = !!task.task_completed;
+			res.status(201).json(data);
 		});
-		res.status(200).json(data);
 	} catch (err) {
 		next(err);
 	}

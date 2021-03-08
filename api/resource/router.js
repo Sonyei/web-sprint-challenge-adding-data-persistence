@@ -18,7 +18,7 @@ router.post("/", async (req, res, next) => {
 	try {
 		const resources = req.body;
 		const data = await resourceLogic.add(resources);
-		res.status(200).json(data);
+		res.status(201).json(data);
 	} catch (err) {
 		next(err);
 	}

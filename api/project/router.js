@@ -19,8 +19,10 @@ router.get("/", (req, res, next) => {
 router.post("/", async (req, res, next) => {
 	try {
 		const projects = req.body;
-		const data = await projectLogic.add(projects);
-		res.status(200).json(data);
+		const data = await projectLogic.add(projects).then((project) => {
+			project.project_completed = !!project.project_completed;
+			res.status(201).json(data);
+		});
 	} catch (err) {
 		next(err);
 	}
