@@ -51,7 +51,7 @@ Build the migration(s) in Knex inside the `data/migrations` folder using appropr
   - [x] `task_completed` - the database defaults it to `false` (integer 0) if not provided
   - [x] `project_id` - required and points to an actual `project_id` in the `projects` table
 
-- [x] A **resource assignment** connects a resource and a project, and is stored in a `project_resources` table. You decide what columns to use.
+- [ ] A **resource assignment** connects a resource and a project, and is stored in a `project_resources` table. You decide what columns to use.
 
 ### Required Endpoints
 
