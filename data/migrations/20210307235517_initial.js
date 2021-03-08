@@ -17,7 +17,11 @@ exports.up = async function (knex) {
 		table.text("task_description").notNull();
 		table.text("task_notes");
 		table.boolean("task_completed").notNull().defaultTo(knex.raw("false"));
-		table.integer("project_id").references("project_id").inTable("projects");
+		table
+			.integer("project_id")
+			.notNull()
+			.references("project_id")
+			.inTable("projects");
 	});
 
 	await knex.schema.createTable("project_resources", (table) => {
