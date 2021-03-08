@@ -7,7 +7,7 @@ router.get("/", (req, res, next) => {
 	try {
 		projectLogic.get().then((project) => {
 			project.forEach((project) => {
-				project.task_completed = !!project.task_completed;
+				project.project_completed = !!project.project_completed;
 			});
 			res.json(project);
 		});
